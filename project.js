@@ -1,46 +1,112 @@
-title('My Project');
+title("My game");
+var img;
+var music;
+var audio;
+var dog;
 
-// put variables here, just like kahn academy
-var exampleVar = 100;
-
-// put functions here, just like kahn academy
-var exampleFunction = function() {
     
-    // change color depending on key pressed
-    if (keyIsPressed && keyCode === SPACE) {
-        fill(255, 0, 0);
-    } else {
-        fill(0, 0, 255);
+
+
+
+    // put variables anywhere
+    var textY = 300;
+    var textX = 300;
+    var barfX = 1;
+    var barfFired = false;
+    var barfY = 150;
+    var x = 625;
+
+    var enemyOne = {
+	x: 625
+    };
+    var enemyTwo = {
+	x: 700
+    };
+    var enemyThree = {
+	x: 800
+    };
+
+    
+
+
+    // this code is executed once when the program is started
+    var setup = function() {
+	audio = new Audio("Barf.mp3");
+	music = new Audio("mixdown.wav");
+	music.controls = true;
+	music.loop = true;
+	music.autoplay = true;
+	document.body.appendChild(music);
+	img = loadImage("Background.png");
+	dog = loadImage("Untitled.png");
+	// set up the size of the canvas (you probably don't want to change this!)
+	size(625, 450);
+
+	
+    };
+//mouse clicked function
+    var mouseClicked = function(){
+	barfFired = true;
+	barfX = 1;
+	audio.play();
+
+
+    };
+
+    var moveEnemy = function(enemy) {
+	enemy.x = enemy.x - 1;
     }
 
-    rect(300, 200, 55, 55);
-};
+    var drawEnemy = function(enemy) {
+	fill(255, 0, 0);
+	rect(enemy.x, 200, 30, 30);
+    }
 
-// this code is executed once when the program is started
-var setup = function() {
+    // override draw function, by default it will be called 60 times per second
+    var draw = function() {
+	background(200, 255, 100);
+	moveEnemy(enemyOne);
+	moveEnemy(enemyTwo);
+	moveEnemy(enemyThree);
+	image(img, 0, 0);
+	image(dog, mouseX, mouseY);
+	if(barfFired){
+	    fill(166, 255, 0);
+	    rect(barfX, barfY, 20, 20);
+	    barfX = barfX + 5;
+	    if(keyPressed && keyCode === UP){
+		barfY -= 5;
+	    } else if(keyPressed && keyCode === DOWN){
+		barfY += 5;
+	    }
+	}
+	drawEnemy(enemyOne);
+	drawEnemy(enemyTwo);
+	drawEnemy(enemyThree);
+	if(enemyOne.x < 1){
+	    enemyOne.x = 625;
 
-    // set up the size of the canvas (you probably don't want to change this!)
-    size(800, 600);
+	}
+	if(enemyTwo.x < 1){
+	    enemyTwo.x = 700;
+	}
+	if(enemyThree.x < 1){
+	    enemyThree.x = 800;
 
-};
+	}
+	if(barfX > enemyOne.x){
+	    enemyOne.x = 625;
+	}
+	if(barfX > enemyTwo.x){
+	    enemyTwo.x = 700;
+	}
+	if(barfX > enemyThree.x){
+	    enemyThree.x = 800;
+	}
 
-// override draw function, by default it will be called 60 times per second
-var draw = function() {
+	if (barfX > 800) {
+	    barfFired = false;
+	    barfX = 0;
+	}
+    };
 
-    // clear the screen
-    background(255, 255, 255);
-
-    // some drawing commands; feel free to change these
-    fill(255, 0, 0);
-
-    // draw some text
-    textSize(50);
-    text("Hello, World!", exampleVar, exampleVar);
-
-    textSize(20);
-    text("Press the space bar...", 500, 500);
-
-    // call a function (defined up above)
-    exampleFunction();
-
-};
