@@ -1,30 +1,26 @@
 title("My game");
+//Put variables anywhere
 var img;
 var music;
 var audio;
 var dog;
+var textY = 300;
+var textX = 300;
+var barfX = 1;
+var barfFired = false;
+var barfY = 150;
+var x = 625;
 
-    
-
-
-
-    // put variables anywhere
-    var textY = 300;
-    var textX = 300;
-    var barfX = 1;
-    var barfFired = false;
-    var barfY = 150;
-    var x = 625;
-
-    var enemyOne = {
+var enemyOne = {
 	x: 625
     };
-    var enemyTwo = {
+var enemyTwo = {
 	x: 700
     };
-    var enemyThree = {
+var enemyThree = {
 	x: 800
     };
+
 
     
 
@@ -63,7 +59,7 @@ var dog;
     }
 
     // override draw function, by default it will be called 60 times per second
-    var draw = function() {
+    var draw = function() {  
 	background(200, 255, 100);
 	moveEnemy(enemyOne);
 	moveEnemy(enemyTwo);
