@@ -1,9 +1,11 @@
 title("My game");
 //Put variables anywhere
+//Base image variables
 var img;
 var music;
 var audio;
 var dog;
+//Actual variables
 var textY = 300;
 var textX = 300;
 var barfX = 1;
@@ -11,7 +13,7 @@ var barfFired = false;
 var barfY = 150;
 var x = 625;
 var y = 225; 
-
+//Enemy objects (Includes x and y)
 var enemyOne = {
     x: 625,
     y: 225
@@ -27,8 +29,7 @@ var enemyThree = {
     y: 225
 };
 
-var keyPressed = function() {
-}
+
 
 
 // this code is executed once when the program is started
@@ -51,7 +52,7 @@ var mouseClicked = function(){
     barfX = 1;
     audio.play();
 };
-
+//Enemy moving and drawing functions
 var moveEnemy = function(enemy) {
     enemy.x = enemy.x - 1;
 }
@@ -64,25 +65,30 @@ var drawEnemy = function(enemy) {
 // override draw function, by default it will be called 60 times per second
 var draw = function() {  
     background(200, 255, 100);
+    //call move enemy functions
     moveEnemy(enemyOne);
     moveEnemy(enemyTwo);
     moveEnemy(enemyThree);
+    //call images
     image(img, 0, 0);
     image(dog, mouseX, mouseY);
+    //barf fired if statement
     if(barfFired){
 	fill(166, 255, 0);
 	rect(barfX, barfY, 20, 20);
 	barfX = barfX + 5;
+	//Key pressed if statements
 	if(keyIsPressed && keyCode === UP){
 	    barfY -= 5;
 	} else if(keyIsPressed && keyCode === DOWN){
 	    barfY += 5;
 	}
     }
-
+    //call draw enemy functions
     drawEnemy(enemyOne);
     drawEnemy(enemyTwo);
     drawEnemy(enemyThree);
+    //collision detection of enemies and walls
 
     if(enemyOne.x < 1){
 	enemyOne.x = 625;
@@ -97,6 +103,7 @@ var draw = function() {
 	enemyThree.x = 800;
 
     }
+    //collision detection between bullets and enemies
 
     if((barfX > enemyOne.x)
        && (barfY > enemyOne.y)
@@ -104,25 +111,28 @@ var draw = function() {
 	enemyOne.x = 625;
     }
 
-    if(barfX > enemyTwo.x){
+    if((barfX > enemyTwo.x)
+       && (barfY > enemyTwo.y)
+       && (barfY < (enemyTwo.y + 30))){
 	enemyTwo.x = 700;
     }
 
-    if(barfX > enemyThree.x){
+    if((barfX > enemyThree.x)
+	&& (barfY > enemyThree.y)
+	&& (barfY < (enemyThree.y + 30))){
 	enemyThree.x = 800;
     }
+    //To keep the enemies coming if the bullet isnt fired
 
     if (barfX > 800) {
 	barfFired = false;
 	barfX = 0;
     }
-
-    if (barfY > enemyTwo.y){
-	enemyTwo.y = 225;
+    if(mouseX > 625){
+	textSize(50, 60);
+	text("You died", 400, 200);
     }
+    
 
-    if (barfY > enemyThree.y){
-	enemyThree.y = 225;
-    }
 };
 
