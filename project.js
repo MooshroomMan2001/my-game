@@ -1,4 +1,4 @@
-title("My game");
+title("Killer the dog");
 //Put variables anywhere
 //Base image variables
 var img;
@@ -6,6 +6,7 @@ var music;
 var audio;
 var dog;
 //Actual variables
+var screenSize = [ 625, 450 ];
 var textY = 300;
 var textX = 300;
 var barfX = 1;
