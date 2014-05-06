@@ -130,7 +130,7 @@ var draw = function() {
 	barfX = 0;
 
     }
-    //Wall collision detection
+    //Wall collision detection, with every wall
     if(mouseX > 550){
 	fill(255, 0,0);
 	textSize(50);
