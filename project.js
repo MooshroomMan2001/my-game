@@ -1,5 +1,5 @@
+//Title the game
 title("Killer the dog");
-//Put variables anywhere
 //Base image variables
 var img;
 var music;
@@ -71,7 +71,7 @@ var draw = function() {
     moveEnemy(enemyTwo);
     moveEnemy(enemyThree);
     //call images
-   // image(img, 0, 0);
+    image(img, 0, 0);
     image(dog, mouseX, mouseY);
     //barf fired if statement
     if(barfFired){
@@ -135,24 +135,29 @@ var draw = function() {
 	fill(255, 0,0);
 	textSize(50);
 	text("You died!", 312, 312);
+	dog = loadImage("Killed.png");
     }
     if(mouseY > 400){
 	fill(255, 0, 0);
 	textSize(50);
 	text("You died!", 312, 312);
+	dog = loadImage("Killed.png");
     }
     if(mouseX < 10){
 	fill(255, 0, 0);
 	textSize(50);
 	text("You died!", 312, 312);
+	dog = loadImage("Killed.png");
+}
     }
     if(mouseY < 10){
 	fill(255, 0, 0);
 	textSize(50);
 	text("You died!", 312, 312);
+	dog = loadImage("Killed.png");
     }
     
 
-};
+
 
     
