@@ -148,14 +148,16 @@ var draw = function() {
 	textSize(50);
 	text("You died!", 312, 312);
 	dog = loadImage("Killed.png");
-}
     }
-    if(mouseY < 10){
+
+     if(mouseY < 10){
 	fill(255, 0, 0);
 	textSize(50);
 	text("You died!", 312, 312);
 	dog = loadImage("Killed.png");
     }
+}
+   
     
 
 
