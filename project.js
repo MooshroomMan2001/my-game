@@ -29,6 +29,12 @@ var enemyThree = {
     x: 800,
     y: 225
 };
+var dog = {
+    x: 50,
+    y: 470,
+    enemyOne: false
+    
+}
 
 
 
@@ -50,7 +56,7 @@ var setup = function() {
 //mouse clicked function
 var mouseClicked = function(){
     barfFired = true;
-    barfX = 1;
+    barfX = dog.x;
     audio.play();
 };
 //Enemy moving and drawing functions
@@ -156,7 +162,9 @@ var draw = function() {
 	text("You died!", 312, 312);
 	dog = loadImage("Killed.png");
     }
+	
 }
+
    
     
 
