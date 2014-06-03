@@ -1,19 +1,36 @@
 //Title the game
 title("Killer the dog");
+//Object for bullets
+var dog = {
+    x: 50,
+    y: 470,
+    enemyOne: false
+    
+};
+
 //Base image variables
 var img;
 var music;
 var audio;
-var dog;
 //Actual variables
 var screenSize = [ 625, 450 ];
 var textY = 300;
 var textX = 300;
-var barfX = 1;
+var barfX = dog.x + 100;
 var barfFired = false;
-var barfY = 150;
+var barfY = 400;
 var x = 625;
 var y = 225; 
+var dog;
+
+//mouseClicked function
+var mouseClicked = function(){
+    barfFired = true;
+    barfX = mouseX + 200;
+    barfY = mouseY;
+    audio.play();
+};
+
 //Enemy objects (Includes x and y)
 var enemyOne = {
     x: 625,
@@ -29,12 +46,7 @@ var enemyThree = {
     x: 800,
     y: 225
 };
-var dog = {
-    x: 50,
-    y: 470,
-    enemyOne: false
-    
-}
+
 
 
 
@@ -53,12 +65,7 @@ var setup = function() {
     size(625, 450);
 };
 
-//mouse clicked function
-var mouseClicked = function(){
-    barfFired = true;
-    barfX = dog.x;
-    audio.play();
-};
+
 //Enemy moving and drawing functions
 var moveEnemy = function(enemy) {
     enemy.x = enemy.x - 1;
