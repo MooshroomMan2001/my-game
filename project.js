@@ -54,7 +54,7 @@ var enemyThree = {
 // this code is executed once when the program is started
 var setup = function() {
     audio = new Audio("Barf.mp3");
-    music = new Audio("mixdown.wav");
+    music = new Audio("Pokemon Blue_Red - Lavender Town.mp3");
     music.controls = true;
     music.loop = true;
     music.autoplay = true;
